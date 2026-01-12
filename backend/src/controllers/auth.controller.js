@@ -30,7 +30,7 @@ async function registerUser(req, res) {
     const token = jwt.sign({
         id: user._id,
     }, process.env.JWT_SECRET) 
-    res.cookies("token", token)
+    res.cookie("token", token)
     
     res.status(201).json({
         message:"User registered successfully",
@@ -121,8 +121,8 @@ async function registerFoodPartner(req, res) {
     })
 }
 
-async function loginFoodPartnner(req, res) {
-    const {email, paddword} = req.body;
+async function loginFoodPartner(req, res) {
+    const {email, password} = req.body;
 
     const foodPartner = await foodPartnerModel.findOne({
         email,
@@ -158,18 +158,27 @@ async function loginFoodPartnner(req, res) {
     })
 }
 
+// function logoutFoodPartner(req, res) {
+//     res.clearCookie("token");
+//     res.status(200).json({
+//         message: "Food partner logged out successfully"
+//     });
+// }
+
+
 function logoutFoodPartner(req, res) {
-    res.cookie("token");
+    res.clearCookie("token", { httpOnly: true, path: "/" });
     res.status(200).json({
-        message: "Foor partner logged out successfully"
+        message: "Food partner logged out successfully"
     });
 }
+
 
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
     registerFoodPartner,
-    loginFoodPartnner,
+    loginFoodPartner,
     logoutFoodPartner
 }
