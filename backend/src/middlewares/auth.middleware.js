@@ -18,7 +18,7 @@ async function authFoodPartnerMiddleware(req, res, next) {
 
         req.foodPartner = foodPartner
 
-        next()
+        next()         
 
     } catch(err) {
         return res.status(401).json({
