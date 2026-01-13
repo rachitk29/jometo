@@ -6,7 +6,7 @@ const foodSchema = new mongoose.Schema({
         required: true,
     },
     video: {
-        type:String,
+        type: String,
         required: true,
     },
     description: {
@@ -15,9 +15,19 @@ const foodSchema = new mongoose.Schema({
     foodPartner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "foodpartner"
+    },
+    likeCount: {
+        type: Number,
+        default: 0
+    },
+    savesCount: {
+        type: Number,
+        default: 0
     }
 })
 
+
 const foodModel = mongoose.model("food", foodSchema);
+
 
 module.exports = foodModel;
