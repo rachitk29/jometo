@@ -4,6 +4,7 @@ import UserLogin from '../pages/UserLogin';
 import UserRegister from '../pages/UserRegister';
 import FoodPartnerLogin from '../pages/FoodPartnerLogin';
 import FoodPartnerRegister from '../pages/FoodPartnerRegister';
+import Home from '../general/Home';
 
 function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ function AppRoutes() {
         <Route path="/user/login" element={<UserLogin />} />
         <Route path="/food-partner/register" element={<FoodPartnerRegister />} />
         <Route path="/food-partner/login" element={<FoodPartnerLogin />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </Router>
   );
