@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';  
+import useNavigate from 'react-router-dom';
 
 function UserLogin() {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false,
-  });
+  
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, type, checked, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const email = email.target.value;
+    const password = password.target.value;
+
+    const response = await axios.post("http://localhost:3000/api/auth/user/login", {
+      email,
+      password
+    }, {withCredentials: true,})
+
+    navigate("/")
+
   };
 
   return (
