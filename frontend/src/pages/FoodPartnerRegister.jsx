@@ -1,0 +1,214 @@
+import React, { useState } from 'react';
+
+function FoodPartnerRegister() {
+  const [formData, setFormData] = useState({
+    restaurantName: '',
+    ownerName: '',
+    email: '',
+    phone: '',
+    cuisineType: '',
+    password: '',
+    confirmPassword: '',
+    agreeTerms: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, type, checked, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-4 transition-colors duration-300">
+      <div className="w-full max-w-sm">
+        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8">
+          {/* Header */}
+          <div className="text-center mb-8 pb-6 border-b border-gray-200 dark:border-slate-700">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">Partner Registration</h1>
+            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">Start your restaurant journey with us</p>
+            <span className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider border border-red-200 dark:border-red-900/30">
+              🍽️ Food Partner
+            </span>
+          </div>
+
+          {/* Form */}
+          <form className="space-y-6 max-h-96 overflow-y-auto pr-2">
+            {/* Restaurant & Owner Names */}
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
+              <div>
+                <label htmlFor="restaurantName" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                  Restaurant Name
+                </label>
+                <input
+                  type="text"
+                  id="restaurantName"
+                  name="restaurantName"
+                  value={formData.restaurantName}
+                  onChange={handleChange}
+                  placeholder="Restaurant Name"
+                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="ownerName" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                  Owner Name
+                </label>
+                <input
+                  type="text"
+                  id="ownerName"
+                  name="ownerName"
+                  value={formData.ownerName}
+                  onChange={handleChange}
+                  placeholder="John Doe"
+                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                />
+              </div>
+            </div>
+
+            {/* Email Field */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="partner@restaurant.com"
+                className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+              />
+            </div>
+
+            {/* Phone & Cuisine Type */}
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
+              <div>
+                <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+1 (555) 000-0000"
+                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="cuisineType" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                  Cuisine Type
+                </label>
+                <input
+                  type="text"
+                  id="cuisineType"
+                  name="cuisineType"
+                  value={formData.cuisineType}
+                  onChange={handleChange}
+                  placeholder="e.g., Italian"
+                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                />
+              </div>
+            </div>
+
+            {/* Password Field */}
+            <div>
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+                className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+              />
+            </div>
+
+            {/* Confirm Password */}
+            <div>
+              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="••••••••"
+                className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+              />
+            </div>
+
+            {/* Agree to Terms */}
+            <div className="flex items-center gap-3 py-2">
+              <input
+                type="checkbox"
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formData.agreeTerms}
+                onChange={handleChange}
+                className="w-5 h-5 cursor-pointer accent-red-500 rounded border-2 border-gray-300 dark:border-slate-600 transition-all duration-150 hover:border-red-500 checked:bg-red-500 checked:border-red-500"
+              />
+              <label htmlFor="agreeTerms" className="text-sm text-gray-600 dark:text-gray-300 cursor-pointer">
+                I agree to Partner Terms of Service
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full py-3 px-4 text-base font-bold text-white bg-gradient-to-r from-red-500 to-red-600 border-0 rounded-lg cursor-pointer transition-all duration-150 uppercase tracking-wider shadow-md hover:shadow-lg hover:from-red-600 hover:to-red-700 hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:transform-none"
+            >
+              Create Partner Account
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center my-6 gap-4">
+            <div className="flex-1 h-px bg-gray-300 dark:bg-slate-600"></div>
+            <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-widest">or</span>
+            <div className="flex-1 h-px bg-gray-300 dark:bg-slate-600"></div>
+          </div>
+
+          {/* Social Login */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <button
+              type="button"
+              className="py-3 px-4 text-sm font-semibold border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white cursor-pointer transition-all duration-150 flex items-center justify-center gap-2 uppercase tracking-wider hover:border-red-500 hover:bg-gray-100 dark:hover:bg-slate-600 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Google
+            </button>
+            <button
+              type="button"
+              className="py-3 px-4 text-sm font-semibold border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white cursor-pointer transition-all duration-150 flex items-center justify-center gap-2 uppercase tracking-wider hover:border-red-500 hover:bg-gray-100 dark:hover:bg-slate-600 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              LinkedIn
+            </button>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center pt-4 border-t border-gray-200 dark:border-slate-700">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Already registered?{' '}
+              <a href="/food-partner/login" className="text-red-500 dark:text-red-400 no-underline font-bold transition-all duration-150 cursor-pointer hover:text-red-600 dark:hover:text-red-300">
+                Sign in
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default FoodPartnerRegister;
