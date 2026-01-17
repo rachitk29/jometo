@@ -21,24 +21,24 @@ function FoodPartnerRegister() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-4 transition-colors duration-300">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-4 transition-colors duration-300">
       <div className="w-full max-w-sm">
-        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8">
+        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6">
           {/* Header */}
-          <div className="text-center mb-8 pb-6 border-b border-gray-200 dark:border-slate-700">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">Partner Registration</h1>
-            <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">Start your restaurant journey with us</p>
+          <div className="text-center mb-6 pb-4 border-b border-gray-200 dark:border-slate-700">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Partner Registration</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-3">Start your restaurant journey with us</p>
             <span className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider border border-red-200 dark:border-red-900/30">
               🍽️ Food Partner
             </span>
           </div>
 
           {/* Form */}
-          <form className="space-y-6 max-h-96 overflow-y-auto pr-2">
+          <form className="space-y-4">
             {/* Restaurant & Owner Names */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 gap-3 md:gap-3">
               <div>
-                <label htmlFor="restaurantName" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                <label htmlFor="restaurantName" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                   Restaurant Name
                 </label>
                 <input
@@ -48,12 +48,12 @@ function FoodPartnerRegister() {
                   value={formData.restaurantName}
                   onChange={handleChange}
                   placeholder="Restaurant Name"
-                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                  className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
                 />
               </div>
 
               <div>
-                <label htmlFor="ownerName" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                <label htmlFor="ownerName" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                   Owner Name
                 </label>
                 <input
@@ -63,14 +63,14 @@ function FoodPartnerRegister() {
                   value={formData.ownerName}
                   onChange={handleChange}
                   placeholder="John Doe"
-                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                  className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
                 />
               </div>
             </div>
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+              <label htmlFor="email" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                 Email Address
               </label>
               <input
@@ -80,14 +80,14 @@ function FoodPartnerRegister() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="partner@restaurant.com"
-                className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
               />
             </div>
 
             {/* Phone & Cuisine Type */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 gap-3 md:gap-3">
               <div>
-                <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                <label htmlFor="phone" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                   Phone Number
                 </label>
                 <input
@@ -97,12 +97,12 @@ function FoodPartnerRegister() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+1 (555) 000-0000"
-                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                  className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
                 />
               </div>
 
               <div>
-                <label htmlFor="cuisineType" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+                <label htmlFor="cuisineType" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                   Cuisine Type
                 </label>
                 <input
@@ -112,14 +112,14 @@ function FoodPartnerRegister() {
                   value={formData.cuisineType}
                   onChange={handleChange}
                   placeholder="e.g., Italian"
-                  className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                  className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+              <label htmlFor="password" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                 Password
               </label>
               <input
@@ -129,13 +129,13 @@ function FoodPartnerRegister() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
               />
             </div>
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+              <label htmlFor="confirmPassword" className="block text-xs font-semibold text-gray-900 dark:text-white mb-1.5 uppercase tracking-wide">
                 Confirm Password
               </label>
               <input
@@ -145,7 +145,7 @@ function FoodPartnerRegister() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 text-base font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
+                className="w-full px-3 py-2 text-sm font-medium border-2 border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white transition-all duration-150 placeholder-gray-500 dark:placeholder-gray-400 hover:border-gray-400 dark:hover:border-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900/30"
               />
             </div>
 
@@ -197,11 +197,17 @@ function FoodPartnerRegister() {
           </div>
 
           {/* Footer */}
-          <div className="text-center pt-4 border-t border-gray-200 dark:border-slate-700">
+          <div className="text-center pt-4 border-t border-gray-200 dark:border-slate-700 space-y-3">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Already registered?{' '}
               <a href="/food-partner/login" className="text-red-500 dark:text-red-400 no-underline font-bold transition-all duration-150 cursor-pointer hover:text-red-600 dark:hover:text-red-300">
                 Sign in
+              </a>
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-500">
+              Looking to register as a regular user?{' '}
+              <a href="/user/register" className="text-blue-500 dark:text-blue-400 no-underline font-bold transition-all duration-150 cursor-pointer hover:text-blue-600 dark:hover:text-blue-300">
+                Register as user
               </a>
             </p>
           </div>
