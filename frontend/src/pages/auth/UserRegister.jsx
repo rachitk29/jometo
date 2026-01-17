@@ -1,7 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function UserRegister() {
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,11 +15,18 @@ function UserRegister() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    await axios.post('http://localhost:5000/api/users/register', {
+    const response = await axios.post("http://localhost:3000/api/auth/user/register", {
       fullName: firstName + ' ' + lastName,
       email,
       password,
-    });
+    }, {
+      withCredentials: true,
+    })
+
+    console.log(response.data);
+
+    navigate("/")
+
   };
 
   return (

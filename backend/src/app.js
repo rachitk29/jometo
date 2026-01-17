@@ -6,18 +6,20 @@ const foodRoutes = require('./routes/food.routes');
 const cors = require('cors');
 
 const app = express();
+
 app.use(cookieParser());
 app.use(express.json());
+
 app.use(cors({
-    origin: "https:localhost:5173",
-    credentials: true
+  origin: "http://localhost:5173",
+  credentials: true
 }));
 
-app.get("/", (req,res) => {
-    res.send("Hello World")
-})
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.use('/api/auth', authRoutes);
-app.use('/api/food', foodRoutes)
+app.use('/api/food', foodRoutes);
 
 module.exports = app;
