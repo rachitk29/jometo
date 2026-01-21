@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, use } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -16,53 +15,66 @@ const Profile = () => {
             })
     }, [ id ])
 
-
     return (
-        <main className="profile-page">
-            <section className="profile-header">
-                <div className="profile-meta">
+        <main className="min-h-screen bg-[#0b1220] flex justify-center py-10 text-white">
+            <div className="w-[360px] space-y-6">
 
-                    <img className="profile-avatar" src="https://images.unsplash.com/photo-1754653099086-3bddb9346d37?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0Nnx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                {/* Profile Card */}
+                <section className="bg-gradient-to-b from-[#1b2a41] to-[#132033] rounded-2xl p-4 shadow-lg">
+                    <div className="flex gap-4 items-start">
+                        <img
+                            className="w-16 h-16 rounded-full object-cover bg-white/10"
+                            src="https://images.unsplash.com/photo-1754653099086-3bddb9346d37?w=500&auto=format&fit=crop&q=60"
+                            alt=""
+                        />
 
-                    <div className="profile-info">
-                        <h1 className="profile-pill profile-business" title="Business name">
-                            {profile?.name}
-                        </h1>
-                        <p className="profile-pill profile-address" title="Address">
-                            {profile?.address}
-                        </p>
+                        <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                                <h1 className="text-sm font-semibold px-3 py-1 rounded-full bg-white/10">
+                                    {profile?.name}
+                                </h1>
+                                <span className="w-3 h-3 rounded-full border border-white/40"></span>
+                            </div>
+
+                            <p className="text-xs text-white/60 mt-2 bg-white/5 px-3 py-2 rounded-lg">
+                                {profile?.address}
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div className="profile-stats" role="list" aria-label="Stats">
-                    <div className="profile-stat" role="listitem">
-                        <span className="profile-stat-label">total meals</span>
-                        <span className="profile-stat-value">{profile?.totalMeals}</span>
+                    <div className="flex justify-around mt-4 text-center">
+                        <div>
+                            <span className="block text-[11px] text-white/50">total meals</span>
+                            <span className="text-sm font-medium">
+                                {profile?.totalMeals}
+                            </span>
+                        </div>
+                        <div>
+                            <span className="block text-[11px] text-white/50">customer served</span>
+                            <span className="text-sm font-medium">
+                                {profile?.customersServed}
+                            </span>
+                        </div>
                     </div>
-                    <div className="profile-stat" role="listitem">
-                        <span className="profile-stat-label">customer served</span>
-                        <span className="profile-stat-value">{profile?.customersServed}</span>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <hr className="profile-sep" />
+                {/* Video Grid */}
+                <section className="grid grid-cols-2 gap-4">
+                    {videos.map((v) => (
+                        <div
+                            key={v.id}
+                            className="aspect-square rounded-xl bg-gradient-to-b from-[#1b2a41] to-[#132033] overflow-hidden flex items-center justify-center text-white/40 text-sm"
+                        >
+                            <video
+                                className="w-full h-full object-cover"
+                                src={v.video}
+                                muted
+                            ></video>
+                        </div>
+                    ))}
+                </section>
 
-            <section className="profile-grid" aria-label="Videos">
-                {videos.map((v) => (
-                    <div key={v.id} className="profile-grid-item">
-                        {/* Placeholder tile; replace with <video> or <img> as needed */}
-
-
-                        <video
-                            className="profile-grid-video"
-                            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                            src={v.video} muted ></video>
-
-
-                    </div>
-                ))}
-            </section>
+            </div>
         </main>
     )
 }
