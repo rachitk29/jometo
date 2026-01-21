@@ -8,6 +8,7 @@ import UserRegister from "../pages/auth/UserRegister";
 import FoodPartnerLogin from "../pages/auth/FoodPartnerLogin";
 import FoodPartnerRegister from "../pages/auth/FoodPartnerRegister";
 import createFood from "../pages/food-partner/CreateFood"
+import Profile from "../pages/food-partner/Profile";
 
 
 function AppRoutes() {
@@ -21,6 +22,7 @@ function AppRoutes() {
         <Route path="/food-partner/register" element={<FoodPartnerRegister />} />
         <Route path="/food-partner/login" element={<FoodPartnerLogin />} />
         <Route path="/create-food" element={<div>Create Food</div>} />
+        <Route path="/food-partner/:profile" element={<Profile/>}/>
       </Routes>
     </Router>
   );
