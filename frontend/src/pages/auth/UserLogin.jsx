@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
 function UserLogin() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Reset error
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    await axios.post(
-      "http://localhost:3000/api/auth/user/login",
-      { email, password },
-      { withCredentials: true }
-    );
-
-    navigate("/");
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/user/login",
+        { email, password },
+        { withCredentials: true }
+      );
+      
+      // If your backend returns the user/partner object:
+      // navigate(`/profile/${response.data.user._id}`); 
+      navigate("/");
+    } catch (err) {
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
@@ -32,6 +40,11 @@ function UserLogin() {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="p-3 text-xs bg-red-900/20 border border-red-900/50 text-red-400 rounded-lg">
+              {error}
+            </div>
+          )}
           
           <div>
             <label className="block text-sm text-zinc-300 mb-1">
@@ -67,16 +80,21 @@ function UserLogin() {
           </button>
         </form>
 
-        <p className="text-sm text-zinc-400 mt-6 text-center">
-          New user?{" "}
-          <Link
-            to="/user/register"
-            className="text-white hover:underline"
-          >
-            Create account
-          </Link>
-        </p>
-
+        <div className="mt-6 text-center space-y-3">
+            <p className="text-sm text-zinc-400">
+            New user?{" "}
+            <Link to="/user/register" className="text-white hover:underline">
+                Create account
+            </Link>
+            </p>
+            
+            <p className="text-xs text-zinc-500">
+                Are you a business?{" "}
+                <Link to="/food-partner/login" className="text-zinc-300 hover:underline">
+                    Partner Login
+                </Link>
+            </p>
+        </div>
       </div>
     </div>
   );

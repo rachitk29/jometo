@@ -1,159 +1,90 @@
-import React from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
-const FoodPartnerRegister = () => {
-  const navigate = useNavigate();
+const Profile = () => {
+  const { id } = useParams()
+  const [profile, setProfile] = useState(null)
+  const [videos, setVideos] = useState([])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const businessName = e.target.businessName.value;
-    const contactName = e.target.contactName.value;
-    const phone = e.target.phone.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const address = e.target.address.value;
-
-    await axios.post(
-      "http://localhost:3000/api/auth/food-partner/register",
-      {
-        name: businessName,
-        contactName,
-        phone,
-        email,
-        password,
-        address,
-      },
-      { withCredentials: true }
-    );
-
-    navigate("/create-food");
-  };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/food-partner/${id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setProfile(res.data.foodPartner)
+        setVideos(res.data.foodPartner.foodItems)
+      })
+  }, [id])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black px-4">
-      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-6 sm:p-8">
+    <div className="min-h-screen bg-black px-4 py-8">
+      <div className="max-w-6xl mx-auto space-y-8">
 
-        <h1 className="text-2xl font-semibold text-white mb-2">
-          Partner Sign Up
-        </h1>
-        <p className="text-sm text-zinc-400 mb-6">
-          Grow your restaurant with our platform
-        </p>
+        {/* Profile Header */}
+        <section className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 sm:p-8">
+          <div className="flex items-center gap-6">
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-
-          <div>
-            <label className="block text-sm text-zinc-300 mb-1">
-              Business name
-            </label>
-            <input
-              type="text"
-              name="businessName"
-              placeholder="Tasty Bites"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600"
+            <img
+              src="https://images.unsplash.com/photo-1754653099086-3bddb9346d37?w=500&auto=format&fit=crop&q=60"
+              alt=""
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border border-zinc-700"
             />
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm text-zinc-300 mb-1">
-                Contact name
-              </label>
-              <input
-                type="text"
-                name="contactName"
-                placeholder="Jane Doe"
-                required
-                className="w-full px-3 py-2 text-sm rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm text-zinc-300 mb-1">
-                Phone
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                placeholder="+91 98765 43210"
-                required
-                className="w-full px-3 py-2 text-sm rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-              />
+            <div className="space-y-1">
+              <h1 className="text-xl sm:text-2xl font-semibold text-white">
+                {profile?.name}
+              </h1>
+              <p className="text-sm text-zinc-400">
+                {profile?.address}
+              </p>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm text-zinc-300 mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="business@example.com"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-            />
+          {/* Stats */}
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 border-t border-zinc-800 pt-6">
+            <div className="text-center">
+              <p className="text-sm text-zinc-400">Total meals</p>
+              <p className="text-2xl font-semibold text-white mt-1">
+                {profile?.totalMeals}
+              </p>
+            </div>
+
+            <div className="text-center">
+              <p className="text-sm text-zinc-400">Customers served</p>
+              <p className="text-2xl font-semibold text-white mt-1">
+                {profile?.customersServed}
+              </p>
+            </div>
           </div>
+        </section>
 
-          <div>
-            <label className="block text-sm text-zinc-300 mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Create password"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-            />
+        {/* Videos Grid */}
+        <section>
+          <h2 className="text-lg font-medium text-white mb-4">
+            Food videos
+          </h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {videos.map((v) => (
+              <div
+                key={v.id}
+                className="aspect-[3/4] rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800"
+              >
+                <video
+                  src={v.video}
+                  muted
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
           </div>
-
-          <div>
-            <label className="block text-sm text-zinc-300 mb-1">
-              Address
-            </label>
-            <input
-              type="text"
-              name="address"
-              placeholder="123 Market Street"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-            />
-            <p className="text-xs text-zinc-500 mt-1">
-              Full address helps customers find you faster.
-            </p>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full mt-2 py-2 rounded-lg bg-white text-black text-sm font-medium hover:bg-zinc-200 transition"
-          >
-            Create Partner Account
-          </button>
-        </form>
-
-        <div className="mt-6 text-center space-y-3">
-          <p className="text-sm text-zinc-400">
-            Already a partner?{" "}
-            <Link to="/food-partner/login" className="text-white hover:underline">
-              Sign in
-            </Link>
-          </p>
-
-          <p className="text-xs text-zinc-500">
-            Are you a regular user?{" "}
-            <Link to="/user/register" className="text-zinc-300 hover:underline">
-              Register as user
-            </Link>
-          </p>
-        </div>
+        </section>
 
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FoodPartnerRegister;
+export default Profile
