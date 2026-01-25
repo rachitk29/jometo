@@ -1,37 +1,130 @@
 const foodModel = require('../models/food.model');
-const storageService = require('../services/storage.service')
-const { v4: uuid } = require("uuid")
+const storageService = require('../services/storage.service');
+const likeModel = require('../models/like.model');
+const { v4: uuid } = require("uuid");
 
 async function createFood(req, res) {
+    try {
+        // 🔒 auth safety check
+        if (!req.foodPartner) {
+            return res.status(401).json({
+                message: "Unauthorized: food partner not found"
+            });
+        }
 
-    const fileUploadResult = await storageService.uploadFile(req.file.buffer, uuid() )
-    // console.log(fileUploadResult);
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Video file is required"
+            });
+        }
 
-    const foodItem = await foodModel.create({
-        name: req.body.name,
-        description: req.body.description,
-        video: fileUploadResult.url,
-        foodPartner: req.foodPartner._id
-    })
+        const fileUploadResult = await storageService.uploadFile(
+            req.file.buffer,
+            uuid()
+        );
 
-    res.status(201).json({
-        message: "food created successfully",
-        food: foodItem
-    })
-    // res.send("food item created")
+        const foodItem = await foodModel.create({
+            name: req.body.name,
+            description: req.body.description,
+            video: fileUploadResult.url,
+            foodPartner: req.foodPartner._id
+        });
+
+        res.status(201).json({
+            message: "Food created successfully",
+            food: foodItem
+        });
+
+    } catch (error) {
+        console.error("Create food error:", error);
+        res.status(500).json({
+            message: "Internal server error"
+        });
+    }
 }
 
 async function getFoodItems(req, res) {
-    const foodItems = await foodModel.find({}) 
+    const foodItems = await foodModel.find({});
     res.status(200).json({
         message: "Food items fetched successfully",
         foodItems
+    });
+}
+
+async function likeFood(req, res) {
+    const {foodId} = req.body;
+    const user = req.user;
+
+    const isAlreadyLiked = await likeModel.findOne({
+        user: user._id,
+        food: foodId
+    })
+
+    if(isAlreadyLiked) {
+        await likeModel.deleteOne({
+            user: user._id,
+            food: foodId
+        })
+
+        await foodModel.findByIdAndUpdate(foodId, {
+            $inc: { likeCount: -1 }
+        })
+
+        return res.status(200).json({
+            message: "Food unliked successfully"
+        })
+    }
+
+    const like = await foodModel.create({
+        user: user._id,
+        food: foodId
+    })
+
+    await foodModel.findByIdAndUpdate(foodId, {
+            $inc: { likeCount: 1 }
+        })
+
+    res.status(201).json({
+        message: "Food liked successfully",
+        like
     })
 }
 
-module.exports = {
-    createFood,
-    getFoodItems
+async function saveFood(req, res) {
+
+    const {foodId} = req.body;
+    const user = req.user;
+
+    const isAlreadySaved = await saveModel.findOne({
+        user: user._id,
+        food: foodId
+    })
+
+    if(isAlreadySaved) {
+        await likeModel.deleteOne({
+            user: user._id,
+            food: foodId
+        })
+
+        return res.status(200).json({
+            message: "Food unsaved successfully"
+        })
+    }
+
+    const save = await saveModel.create({
+        user: user._id,
+        food: foodId
+    })
+
+    res.status(201).json({
+        message: "Food saved successfully",
+        save
+    })
 }
 
- 
+
+module.exports = {
+    createFood,
+    getFoodItems,
+    likeFood
+};
