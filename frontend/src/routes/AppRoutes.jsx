@@ -21,7 +21,7 @@ function AppRoutes() {
         <Route path="/user/login" element={<UserLogin />} />
         <Route path="/food-partner/register" element={<FoodPartnerRegister />} />
         <Route path="/food-partner/login" element={<FoodPartnerLogin />} />
-        <Route path="/create-food" element={< CreateFood/>} />
+        <Route path="/create-food" element={<CreateFood/>} />
         <Route path="/food-partner/:id" element={<Profile/>}/>
       </Routes>
     </Router>

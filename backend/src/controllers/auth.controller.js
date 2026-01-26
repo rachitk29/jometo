@@ -49,7 +49,7 @@ async function loginUser(req, res) {
     })
 
     if(!user){
-        res.status(400).json({
+        return res.status(400).json({
             message: "Invalid email or password"
         })
     }
@@ -57,7 +57,7 @@ async function loginUser(req, res) {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     
     if(!isPasswordValid) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Invalid email or password"
         })
     }
@@ -93,7 +93,7 @@ async function registerFoodPartner(req, res) {
     })
 
     if(isAccountAlreadyExists){
-        return res.send(400).json({
+        return res.status(400).json({
             message: "Food partner account already exists"
         })
     }
