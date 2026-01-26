@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-// import ReelFeed from '../../components/ReelFeed'
+import '../../styles/reels.css'
+import ReelFeed from '../../components/ReelFeed'
 
 const Home = () => {
     const [ videos, setVideos ] = useState([])
@@ -41,16 +42,15 @@ const Home = () => {
         }else{
             setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, savesCount: v.savesCount - 1 } : v))
         }
-    }  
+    }
 
     return (
-        // <ReelFeed
-        //     items={videos}
-        //     onLike={likeVideo}
-        //     onSave={saveVideo}
-        //     emptyMessage="No videos available."
-        // />
-        <div>reels</div>
+        <ReelFeed
+            items={videos}
+        onLike={likeVideo}
+            onSave={saveVideo}
+            emptyMessage="No videos available."
+        />
     )
 }
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const saveSchema = new mongoose.Schema({
+
+const likeSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -13,8 +14,7 @@ const saveSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true
-}) 
+})
 
-const saveModel = mongoose.model('save', saveSchema);
-
-module.exports = saveModel
+const Like = mongoose.model('like', likeSchema);
+module.exports = Like;
