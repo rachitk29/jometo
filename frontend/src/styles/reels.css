@@ -107,6 +107,21 @@
   .reel-description { font-size: 1.05rem; max-width: 70ch; }
 }
 
+@media (min-width: 1100px) {
+  /* Constrain the content column on wide screens so text and CTAs remain comfortable to read */
+  .reel-content {
+    padding: 48px;
+    padding-right: 6.5rem;
+    max-width: 900px;
+    margin-left: 48px;
+  }
+
+  .reel-description { max-width: 60ch; font-size: 1.1rem; }
+
+  /* Nudge actions a little more to the right on wider screens */
+  .reel-actions { right: 28px; }
+}
+
 /* Right-side vertical actions (like, bookmark, comments) */
 .reel-actions {
   position: absolute;
